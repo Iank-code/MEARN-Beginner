@@ -5,14 +5,16 @@ const getGoals = (req, res) => {
   res.status(200).json({ message: "Get goals" });
 };
 
-
 // @desc Set goals
 // @route Post /api/goals
 // @access private
 const setGoal = (req, res) => {
+  if (!req.body.text) {
+    res.status(400);
+    throw new Error("Please add a text field");
+  }
   res.status(200).json({ message: "Get goals" });
 };
-
 
 // @desc Update goals
 // @route Put /api/goals/:id
@@ -20,7 +22,6 @@ const setGoal = (req, res) => {
 const updateGoal = (req, res) => {
   res.status(200).json({ message: `Update goal ${req.params.id}` });
 };
-
 
 // @desc Delete goals
 // @route Delete /api/goals/:id
@@ -33,5 +34,5 @@ module.exports = {
   getGoals,
   setGoal,
   updateGoal,
-  deleteGoal
+  deleteGoal,
 };
